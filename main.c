@@ -6,13 +6,13 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:37:46 by trakotos          #+#    #+#             */
-/*   Updated: 2026/09/26 15:03:42 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/09/26 15:39:25 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/codexion.h"
 
-int main(int ac, char **av){
-
-    return 0; 
-} 
+int	main(int ac, char **av)
+{
+	return (0);
+}
