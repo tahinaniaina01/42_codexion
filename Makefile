@@ -6,7 +6,7 @@
 #    By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/26 16:35:28 by trakotos          #+#    #+#              #
-#    Updated: 2026/09/26 16:41:32 by trakotos         ###   ########.fr        #
+#    Updated: 2026/09/26 16:49:09 by trakotos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,10 @@ NAME = codexion
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -pthread
 RM = rm -rf
-SRCS = main.c \ 
-	src/parser/parse.c
+SRCS = \
+	main.c \
+	src/parse.c
+
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

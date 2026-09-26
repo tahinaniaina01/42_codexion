@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 15:44:03 by trakotos          #+#    #+#             */
-/*   Updated: 2026/09/26 16:24:45 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/09/26 16:45:43 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,21 @@ static int	is_valid(int ac, char **av)
 
 t_input	*parse(int ac, char **av)
 {
-	t_input	inputs;
+	t_input	*inputs;
 
+	inputs = (t_input *)malloc(sizeof(t_input));
 	if (ac != 9 || !is_valid(ac, av))
 		return (NULL);
-	inputs.n_coders = atoi(av[1]);
-	inputs.time_to_burnout = atoi(av[2]);
-	inputs.time_to_compile = atoi(av[3]);
-	inputs.time_to_debug = atoi(av[4]);
-	inputs.time_to_refactor = atoi(av[5]);
-	inputs.number_of_compiles_required = atoi(av[6]);
-	inputs.dongle_cooldown = atoi(av[7]);
+	inputs->n_coders = atoi(av[1]);
+	inputs->time_to_burnout = atoi(av[2]);
+	inputs->time_to_compile = atoi(av[3]);
+	inputs->time_to_debug = atoi(av[4]);
+	inputs->time_to_refactor = atoi(av[5]);
+	inputs->number_of_compiles_required = atoi(av[6]);
+	inputs->dongle_cooldown = atoi(av[7]);
 	if (!strcmp(av[8], "fifo"))
-		inputs.scheduler = FIFO;
+		inputs->scheduler = FIFO;
 	else
-		inputs.scheduler = EDF;
-	return (&inputs);
+		inputs->scheduler = EDF;
+	return (inputs);
 }
