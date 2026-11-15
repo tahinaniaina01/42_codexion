@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:37:03 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 11:55:11 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 13:17:55 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ typedef struct s_coder
 	int				id;
 	pthread_mutex_t	mutex;
 	pthread_t		thread;
-	t_dongle		*right_dongle;
-	t_dongle		*left_dongle;
-	long			time_to_burnout;
+	t_dongle		*first_dongle;
+	t_dongle		*second_dongle;
+	long			burnout_time;
 	long			time_to_compile;
 	long			time_to_debug;
 	long			time_to_refactor;
