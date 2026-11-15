@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 11:59:11 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 17:58:03 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 18:13:43 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	init_coders(t_data *data, t_input *inputs)
 
 	data->coders = (t_coder *)malloc(sizeof(t_coder) * inputs->n_coders);
 	if (!data->coders)
-		return (1);
+		return (2);
 	i = 0;
 	while (i < inputs->n_coders)
 	{
@@ -35,7 +35,7 @@ int	init_coders(t_data *data, t_input *inputs)
 			% data->n_coders];
 		if (pthread_mutex_init(&data->coders[i].mutex, NULL) != 0)
 		{
-			return (1);
+			return (3);
 		}
 		i++;
 	}
@@ -48,16 +48,16 @@ int	init_dongles(t_data *data, t_input *inputs)
 
 	data->dongles = (t_dongle *)malloc(sizeof(t_dongle) * inputs->n_coders);
 	if (!data->dongles)
-		return (5);
+		return (2);
 	i = 0;
 	while (i < data->n_coders)
 	{
 		if (pthread_mutex_init(&data->dongles[i].mutex, NULL) != 0)
-			return (6);
+			return (3);
 		if (pthread_cond_init(&data->dongles[i].cond, NULL) != 0)
 		{
 			pthread_mutex_destroy(&data->dongles[i].mutex);
-			return (7);
+			return (3);
 		}
 		data->dongles[i].queue = NULL;
 		data->dongles[i].in_use = 0;
@@ -75,18 +75,19 @@ int	init_data(t_data *data, t_input *inputs)
 	data->stop = 0;
 	data->n_coders = inputs->n_coders;
 	if (pthread_mutex_init(&data->log_mutex, NULL) != 0)
-		return (2);
+		return (3);
 	r = init_dongles(data, inputs);
 	if (r)
 	{
 		pthread_mutex_destroy(&data->log_mutex);
 		return (r);
 	}
-	if (init_coders(data, inputs))
+	r = init_coders(data, inputs);
+	if (r)
 	{
 		destroy_dongles(data->dongles, data->n_coders);
 		pthread_mutex_destroy(&data->log_mutex);
-		return (4);
+		return (r);
 	}
 	return (0);
 }

@@ -6,24 +6,11 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:37:46 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 17:55:44 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 18:09:01 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
-
-static void	print_inputs(t_input *inputs)
-{
-	printf("n coders: %d\n", inputs->n_coders);
-	printf("time_to_burnout: %d\n", inputs->time_to_burnout);
-	printf("time_to_compile: %d\n", inputs->time_to_compile);
-	printf("time_to_debug: %d\n", inputs->time_to_debug);
-	printf("time_to_refactor: %d\n", inputs->time_to_refactor);
-	printf("number_of_compiles_required: %d\n",
-		inputs->number_of_compiles_required);
-	printf("dongle_cooldown: %d\n", inputs->dongle_cooldown);
-	printf("scheduler: %s\n", inputs->scheduler ? "edf" : "fifo");
-}
 
 int	main(int ac, char **av)
 {
@@ -41,7 +28,6 @@ int	main(int ac, char **av)
 				"<dongle_cooldown: number> <scheduler: 'fifo' | 'edf'>");
 		return (1);
 	}
-	print_inputs(inputs);
 	r = init_data(&data, inputs);
 	if (r)
 	{
