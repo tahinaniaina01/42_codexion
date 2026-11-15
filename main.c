@@ -6,12 +6,11 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:37:46 by trakotos          #+#    #+#             */
-/*   Updated: 2026/09/26 16:47:40 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 11:35:55 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/codexion.h"
-#include "headers/parser.h"
 
 static void	print_inputs(t_input *inputs)
 {

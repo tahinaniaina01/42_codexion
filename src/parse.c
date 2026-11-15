@@ -6,11 +6,11 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 15:44:03 by trakotos          #+#    #+#             */
-/*   Updated: 2026/09/26 16:45:43 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 11:35:51 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/parser.h"
+#include "../../headers/codexion.h"
 
 static int	is_integer(char *str)
 {
