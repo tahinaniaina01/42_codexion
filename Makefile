@@ -6,7 +6,7 @@
 #    By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/26 16:35:28 by trakotos          #+#    #+#              #
-#    Updated: 2026/09/26 16:49:09 by trakotos         ###   ########.fr        #
+#    Updated: 2026/11/15 11:56:28 by trakotos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,4 +34,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-	
