@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:37:03 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 13:51:36 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 13:56:01 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,7 @@ typedef struct s_data
 t_input				*parse(int ac, char **av);
 int					init_data(t_data *data, t_input *inputs);
 void				destroy_dongles(t_dongle *dongles, int n_dongles);
+void				destroy_coders(t_coder *coders, int n_coders);
+void				cleanup_data(t_data *data);
 
 #endif
