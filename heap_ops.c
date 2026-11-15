@@ -6,27 +6,36 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 13:18:03 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 15:10:09 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 15:41:51 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-void	heap_push(t_heap **heap, t_request *val)
+void	heap_push(t_heap **heap, t_request val)
 {
 	t_heap	*new;
 	t_heap	*tmp;
 	t_heap	*next;
 
 	new = (t_heap *)malloc(sizeof(t_heap));
+	new->value = val;
+	new->next = NULL;
 	if (*heap == NULL)
 	{
-		*heap == new;
+		*heap = new;
+		printf("new\n");
 		return ;
 	}
 	tmp = *heap;
-	if (val->sheduler == EDF)
+	if (val.sheduler == EDF)
 	{
+		if (tmp->value.preority > new->value.preority)
+		{
+			new->next = tmp;
+			*heap = new;
+			return ;
+		}
 		while (tmp->next != NULL)
 		{
 			if (tmp->next->value.preority > new->value.preority)
@@ -34,13 +43,18 @@ void	heap_push(t_heap **heap, t_request *val)
 				next = tmp->next;
 				tmp->next = new;
 				new->next = next;
+				return ;
 			}
 			tmp = tmp->next;
 		}
+		tmp->next = new;
 	}
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	tmp->next = new;
+	else
+	{
+		while (tmp->next != NULL)
+			tmp = tmp->next;
+		tmp->next = new;
+	}
 }
 
 void	heap_pop(t_heap **heap)
@@ -52,4 +66,16 @@ void	heap_pop(t_heap **heap)
 	tmp = *heap;
 	*heap = (*heap)->next;
 	free(tmp);
+}
+
+void	clear_heap(t_heap **heap)
+{
+	t_heap	*cur;
+
+	while (*heap != NULL)
+	{
+		cur = *heap;
+		*heap = (*heap)->next;
+		free(cur);
+	}
 }
