@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:37:03 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 17:35:05 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 19:00:39 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_input
 typedef struct s_request
 {
 	int				coder_id;
-	int				preority;
+	long			preority;
 	t_scheduler		sheduler;
 }					t_request;
 
@@ -87,6 +87,7 @@ typedef struct s_data
 	pthread_t		monitor;
 	int				stop;
 	long			start_time;
+	t_scheduler		scheduler;
 }					t_data;
 
 typedef struct s_data_and_coder

@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 11:59:11 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 18:13:43 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 18:51:37 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	init_data(t_data *data, t_input *inputs)
 
 	data->stop = 0;
 	data->n_coders = inputs->n_coders;
+	data->scheduler = inputs->scheduler;
 	if (pthread_mutex_init(&data->log_mutex, NULL) != 0)
 		return (3);
 	r = init_dongles(data, inputs);
