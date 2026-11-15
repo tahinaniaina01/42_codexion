@@ -6,17 +6,42 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 13:18:03 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 15:41:51 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 15:55:20 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
+static void	sort_push(t_heap **heap, t_heap *new)
+{
+	t_heap	*tmp;
+	t_heap	*next;
+
+	tmp = *heap;
+	if (tmp->value.preority > new->value.preority)
+	{
+		new->next = tmp;
+		*heap = new;
+		return ;
+	}
+	while (tmp->next != NULL)
+	{
+		if (tmp->next->value.preority > new->value.preority)
+		{
+			next = tmp->next;
+			tmp->next = new;
+			new->next = next;
+			return ;
+		}
+		tmp = tmp->next;
+	}
+	tmp->next = new;
+}
+
 void	heap_push(t_heap **heap, t_request val)
 {
 	t_heap	*new;
 	t_heap	*tmp;
-	t_heap	*next;
 
 	new = (t_heap *)malloc(sizeof(t_heap));
 	new->value = val;
@@ -30,24 +55,7 @@ void	heap_push(t_heap **heap, t_request val)
 	tmp = *heap;
 	if (val.sheduler == EDF)
 	{
-		if (tmp->value.preority > new->value.preority)
-		{
-			new->next = tmp;
-			*heap = new;
-			return ;
-		}
-		while (tmp->next != NULL)
-		{
-			if (tmp->next->value.preority > new->value.preority)
-			{
-				next = tmp->next;
-				tmp->next = new;
-				new->next = next;
-				return ;
-			}
-			tmp = tmp->next;
-		}
-		tmp->next = new;
+		sort_push(heap, new);
 	}
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:37:46 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 15:42:02 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 15:56:11 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(void)
 		heap_push(&heap, a);
 	}
 	a.coder_id = 3;
-	a.preority = -10;
+	a.preority = 10;
 	a.sheduler = EDF;
 	heap_push(&heap, a);
 	for (t_heap *i = heap; i != NULL; i = i->next)
