@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 11:59:11 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 14:26:56 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 16:22:03 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,16 @@ int	init_data(t_data *data, t_input *inputs)
 {
 	data->stop = 0;
 	data->n_coders = inputs->n_coders;
-	if (pthread_mutex_init(&data->print_mutex, NULL) != 0)
+	if (pthread_mutex_init(&data->log_mutex, NULL) != 0)
 		return (1);
 	if (!init_dongles(data, inputs))
 	{
-		pthread_mutex_destroy(&data->print_mutex);
+		pthread_mutex_destroy(&data->log_mutex);
 		return (1);
 	}
 	if (!init_coders(data, inputs))
 	{
-		pthread_mutex_destroy(&data->print_mutex);
+		pthread_mutex_destroy(&data->log_mutex);
 		return (1);
 	}
 	return (0);

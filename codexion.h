@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:37:03 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 15:35:26 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 16:25:48 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+# include <sys/time.h>
+# include <time.h>
 # include <unistd.h>
 
 typedef enum e_sheduler
@@ -80,9 +82,10 @@ typedef struct s_data
 	int				n_coders;
 	t_coder			*coders;
 	t_dongle		*dongles;
-	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	log_mutex;
 	pthread_t		monitor;
 	int				stop;
+	long			start_time;
 }					t_data;
 
 t_input				*parse(int ac, char **av);
@@ -93,5 +96,8 @@ void				cleanup_data(t_data *data);
 void				heap_push(t_heap **heap, t_request val);
 void				heap_pop(t_heap **heap);
 void				clear_heap(t_heap **heap);
+long				now(void);
+void				sleep_ms(t_data *data, long duration);
+int					is_stop(t_data *data);
 
 #endif
