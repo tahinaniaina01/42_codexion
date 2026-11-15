@@ -6,13 +6,13 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 16:18:56 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 17:03:32 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 17:25:35 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-int	is_stop(t_data *data)
+int	is_stopped(t_data *data)
 {
 	int	stoped;
 

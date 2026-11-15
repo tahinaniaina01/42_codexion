@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:37:46 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 16:02:06 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 17:41:21 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	main(int ac, char **av)
 	print_inputs(inputs);
 	if (init_data(&data, inputs))
 		return (1);
+	if (codexion(&data))
+		fprintf(stderr, "Error: could not create the threads\n");
 	free(inputs);
 	cleanup_data(&data);
 	return (0);

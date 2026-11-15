@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 13:04:58 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 16:03:51 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 17:41:58 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ void	cleanup_data(t_data *data)
 {
 	destroy_dongles(data->dongles, data->n_coders);
 	destroy_coders(data->coders, data->n_coders);
-	pthread_mutex_destroy(&data->print_mutex);
+	pthread_mutex_destroy(&data->log_mutex);
 }

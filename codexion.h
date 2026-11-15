@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:37:03 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 17:10:59 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 17:35:05 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_coder
 	long			time_to_refactor;
 	long			last_compile_start;
 	int				compile_count;
+	int				compiles_required;
 }					t_coder;
 
 typedef struct s_data
@@ -104,10 +105,11 @@ void				heap_pop(t_heap **heap);
 void				clear_heap(t_heap **heap);
 long				now(void);
 void				sleep_ms(t_data *data, long duration);
-int					is_stop(t_data *data);
+int					is_stopped(t_data *data);
 int					codexion(t_data *data);
-void				*coder_routing(void *arg);
+void				*coder_thread(void *arg);
 void				log_state(t_data *data, int id, char *message);
 void				stop_codexion(t_data *data);
+void				*monitor_thread(void *arg);
 
 #endif

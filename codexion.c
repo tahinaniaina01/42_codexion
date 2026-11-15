@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:36:53 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 17:19:10 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 17:39:34 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	start_coders(t_data *data)
 		}
 		dc->data = data;
 		dc->coder = &data->coders[i];
-		if (pthread_create(&data->coders[i].thread, NULL, (void *)coder_routing,
+		if (pthread_create(&data->coders[i].thread, NULL, coder_thread,
 				dc) != 0)
 		{
 			stop_codexion(data);
@@ -70,4 +70,13 @@ int	codexion(t_data *data)
 	set_start_time(data);
 	if (start_coders(data) != 0)
 		return (1);
+	if (pthread_create(&data->monitor, NULL, monitor_thread, data) != 0)
+	{
+		stop_codexion(data);
+		join_coder(data);
+		return (1);
+	}
+	pthread_join(data->monitor, NULL);
+	join_coder(data);
+	return (0);
 }
