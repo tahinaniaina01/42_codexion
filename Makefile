@@ -6,7 +6,7 @@
 #    By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/26 16:35:28 by trakotos          #+#    #+#              #
-#    Updated: 2026/11/15 11:56:28 by trakotos         ###   ########.fr        #
+#    Updated: 2026/11/15 14:23:07 by trakotos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,10 @@ CFLAGS = -Wall -Wextra -Werror -pthread
 RM = rm -rf
 SRCS = \
 	main.c \
-	src/parse.c
+	parse.c \
+	cleanup.c \
+	heap_ops.c \
+	init.c
 
 OBJS = $(SRCS:.c=.o)
 

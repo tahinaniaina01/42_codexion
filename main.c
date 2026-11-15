@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:37:46 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 11:57:57 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 14:26:11 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	print_inputs(t_input *inputs)
 {
-	printf("n coders: %d", inputs->n_coders);
+	printf("n coders: %d\n", inputs->n_coders);
 	printf("time_to_burnout: %d\n", inputs->time_to_burnout);
 	printf("time_to_compile: %d\n", inputs->time_to_compile);
 	printf("time_to_debug: %d\n", inputs->time_to_debug);
@@ -28,6 +28,7 @@ static void	print_inputs(t_input *inputs)
 int	main(int ac, char **av)
 {
 	t_input	*inputs;
+	t_data	data;
 
 	inputs = parse(ac, av);
 	if (inputs == NULL)
@@ -40,6 +41,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	print_inputs(inputs);
+	init_data(&data, inputs);
 	free(inputs);
 	return (0);
 }

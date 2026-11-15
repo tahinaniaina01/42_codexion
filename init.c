@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 11:59:11 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 13:43:01 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 14:23:45 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	init_dongles(t_data *data, t_input *inputs)
 			return (1);
 		if (pthread_cond_init(&data->dongles[i].cond, NULL) != 0)
 		{
-			pthread_mutext_destroy(&data->dongles[i].mutex);
+			pthread_mutex_destroy(&data->dongles[i].mutex);
 			return (1);
 		}
 		data->dongles[i].queue = NULL;
