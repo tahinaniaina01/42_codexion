@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 16:12:51 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 19:16:10 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 20:06:28 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	sleep_ms(t_data *data, long duration)
 		usleep(500);
 }
 
-void	ms_to_timespec(long ms, struct timeval *ts)
+void	ms_to_timespec(long ms, struct timespec *ts)
 {
 	ts->tv_sec = ms / 1000L;
-	ts->tv_usec = ms % 1000 * 1000000L;
+	ts->tv_nsec = (ms % 1000) * 1000000L;
 }

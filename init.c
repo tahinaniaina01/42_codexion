@@ -6,11 +6,30 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 11:59:11 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 18:51:37 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 20:32:05 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
+
+static void	asigne_dongles(t_data *data, int index)
+{
+	int	left;
+	int	right;
+
+	left = index;
+	right = (index + 1) % data->n_coders;
+	if (left > right)
+	{
+		data->coders[index].first_dongle = &data->dongles[left];
+		data->coders[index].second_dongle = &data->dongles[right];
+	}
+	else
+	{
+		data->coders[index].first_dongle = &data->dongles[right];
+		data->coders[index].second_dongle = &data->dongles[left];
+	}
+}
 
 int	init_coders(t_data *data, t_input *inputs)
 {
@@ -30,9 +49,7 @@ int	init_coders(t_data *data, t_input *inputs)
 		data->coders[i].last_compile_start = 0;
 		data->coders[i].compile_count = 0;
 		data->coders[i].compiles_required = inputs->number_of_compiles_required;
-		data->coders[i].first_dongle = &data->dongles[i];
-		data->coders[i].second_dongle = &data->dongles[(i + 1)
-			% data->n_coders];
+		asigne_dongles(data, i);
 		if (pthread_mutex_init(&data->coders[i].mutex, NULL) != 0)
 		{
 			return (3);

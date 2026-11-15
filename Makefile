@@ -6,7 +6,7 @@
 #    By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/26 16:35:28 by trakotos          #+#    #+#              #
-#    Updated: 2026/11/15 17:45:53 by trakotos         ###   ########.fr        #
+#    Updated: 2026/11/15 19:49:05 by trakotos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRCS = \
 	cleanup.c \
 	coder.c \
 	codexion.c \
+	dongle.c \
 	heap_ops.c \
 	init.c \
 	log.c \

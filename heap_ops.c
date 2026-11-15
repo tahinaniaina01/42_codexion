@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 13:18:03 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 15:55:20 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 19:53:32 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	heap_push(t_heap **heap, t_request val)
 	if (*heap == NULL)
 	{
 		*heap = new;
-		printf("new\n");
 		return ;
 	}
 	tmp = *heap;
