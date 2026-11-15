@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:37:03 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 19:51:45 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 21:08:15 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,6 @@ void				stop_codexion(t_data *data);
 void				*monitor_thread(void *arg);
 int					wait_for_turn(t_data *data, t_dongle *dongle, int coder_id);
 void				dongle_release(t_dongle *dongle);
+void				declare_burnout(t_data *data, int id);
 
 #endif

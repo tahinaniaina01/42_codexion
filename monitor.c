@@ -6,11 +6,38 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 17:19:26 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 17:34:18 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 21:15:28 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
+
+static int	has_burned_out(t_coder *coder)
+{
+	long	elapsed;
+
+	pthread_mutex_lock(&coder->mutex);
+	elapsed = now() - coder->last_compile_start;
+	pthread_mutex_unlock(&coder->mutex);
+	return (elapsed > coder->burnout_time);
+}
+
+static int	check_burnouts(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->n_coders)
+	{
+		if (has_burned_out(&data->coders[i]))
+		{
+			declare_burnout(data, data->coders[i].id);
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
 
 static int	all_coder_done(t_data *data)
 {
@@ -39,6 +66,8 @@ void	*monitor_thread(void *arg)
 	{
 		if (all_coder_done(data))
 			stop_codexion(data);
+		if (check_burnouts(data))
+			return (NULL);
 		usleep(1000);
 	}
 	return (NULL);
