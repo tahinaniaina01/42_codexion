@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 17:19:26 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 21:25:03 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 21:32:08 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,15 @@ static int	check_burnouts(t_data *data)
 static int	all_coder_done(t_data *data)
 {
 	int	i;
-	int	done;
+	int	d;
 
 	i = 0;
 	while (i < data->n_coders)
 	{
 		pthread_mutex_lock(&data->coders[i].mutex);
-		done = (data->coders[i].compile_count >= data->coders[i].compiles_required);
+		d = data->coders[i].compile_count >= data->coders[i].compiles_required;
 		pthread_mutex_unlock(&data->coders[i].mutex);
-		if (!done)
+		if (!d)
 			return (0);
 		i++;
 	}
