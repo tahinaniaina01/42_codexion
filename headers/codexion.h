@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:37:03 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 11:47:24 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 11:55:11 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,23 @@ typedef struct s_coder
 	pthread_t		thread;
 	t_dongle		*right_dongle;
 	t_dongle		*left_dongle;
+	long			time_to_burnout;
+	long			time_to_compile;
+	long			time_to_debug;
+	long			time_to_refactor;
+	long			last_compile_start;
 	int				compile_count;
-	int				last_compile_start;
 }					t_coder;
+
+typedef struct s_data
+{
+	int				n_coders;
+	t_coder			*coders;
+	t_dongle		*dongles;
+	pthread_mutex_t	print_mutex;
+	pthread_t		monitor;
+	int				stop;
+}					t_data;
 
 t_input				*parse(int ac, char **av);
 
