@@ -6,7 +6,7 @@
 #    By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/26 16:35:28 by trakotos          #+#    #+#              #
-#    Updated: 2026/11/15 16:13:11 by trakotos         ###   ########.fr        #
+#    Updated: 2026/11/15 16:32:55 by trakotos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRCS = \
 	cleanup.c \
 	heap_ops.c \
 	init.c \
-	time_utils.c
+	time_utils.c \
+	coder.c
 
 OBJS = $(SRCS:.c=.o)
 

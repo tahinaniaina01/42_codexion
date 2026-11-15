@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:37:03 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 16:26:10 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 17:10:59 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,12 @@ typedef struct s_data
 	long			start_time;
 }					t_data;
 
+typedef struct s_data_and_coder
+{
+	t_data			*data;
+	t_coder			*coder;
+}					t_data_and_coder;
+
 t_input				*parse(int ac, char **av);
 int					init_data(t_data *data, t_input *inputs);
 void				destroy_dongles(t_dongle *dongles, int n_dongles);
@@ -100,5 +106,8 @@ long				now(void);
 void				sleep_ms(t_data *data, long duration);
 int					is_stop(t_data *data);
 int					codexion(t_data *data);
+void				*coder_routing(void *arg);
+void				log_state(t_data *data, int id, char *message);
+void				stop_codexion(t_data *data);
 
 #endif
