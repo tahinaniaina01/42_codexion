@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:37:03 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 19:00:39 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 19:16:22 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void				heap_pop(t_heap **heap);
 void				clear_heap(t_heap **heap);
 long				now(void);
 void				sleep_ms(t_data *data, long duration);
+void				ms_to_timespec(long ms, struct timeval *ts);
 int					is_stopped(t_data *data);
 int					codexion(t_data *data);
 void				*coder_thread(void *arg);
