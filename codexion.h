@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:37:03 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 13:56:01 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 15:10:27 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_request
 {
 	int				coder_id;
 	int				preority;
+	t_scheduler		sheduler;
 }					t_request;
 
 typedef struct s_heap
@@ -89,5 +90,7 @@ int					init_data(t_data *data, t_input *inputs);
 void				destroy_dongles(t_dongle *dongles, int n_dongles);
 void				destroy_coders(t_coder *coders, int n_coders);
 void				cleanup_data(t_data *data);
+void				heap_push(t_heap **heap, t_request *val);
+void				heap_pop(t_heap **heap);
 
 #endif
