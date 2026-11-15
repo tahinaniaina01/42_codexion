@@ -15,17 +15,24 @@
 void	*coder_thread(void *arg)
 {
 	t_data_and_coder	*dc;
+	t_data				*data;
+	t_coder				*coder;
 
 	dc = (t_data_and_coder *)arg;
-	while (!is_stopped(dc->data))
+	data = dc->data;
+	coder = dc->coder;
+	free(dc);
+	while (!is_stopped(data))
 	{
-		log_state(dc->data, dc->coder->id, "is compiling");
-		sleep_ms(dc->data, dc->coder->time_to_compile);
-		dc->coder->compile_count++;
-		log_state(dc->data, dc->coder->id, "is debugging");
-		sleep_ms(dc->data, dc->coder->time_to_debug);
-		log_state(dc->data, dc->coder->id, "is refactoring");
-		sleep_ms(dc->data, dc->coder->time_to_refactor);
+		log_state(data, coder->id, "is compiling");
+		sleep_ms(data, coder->time_to_compile);
+		pthread_mutex_lock(&coder->mutex);
+		coder->compile_count++;
+		pthread_mutex_unlock(&coder->mutex);
+		log_state(data, coder->id, "is debugging");
+		sleep_ms(data, coder->time_to_debug);
+		log_state(data, coder->id, "is refactoring");
+		sleep_ms(data, coder->time_to_refactor);
 	}
 	return (NULL);
 }

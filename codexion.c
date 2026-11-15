@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:36:53 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 17:39:34 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 17:46:19 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static int	start_coders(t_data *data)
 		}
 		i++;
 	}
+	return (0);
 }
 
 int	codexion(t_data *data)

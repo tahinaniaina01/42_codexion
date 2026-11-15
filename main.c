@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:37:46 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 17:41:21 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 17:55:44 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int ac, char **av)
 {
 	t_input	*inputs;
 	t_data	data;
+	int		r;
 
 	inputs = parse(ac, av);
 	if (inputs == NULL)
@@ -41,8 +42,12 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	print_inputs(inputs);
-	if (init_data(&data, inputs))
-		return (1);
+	r = init_data(&data, inputs);
+	if (r)
+	{
+		free(inputs);
+		return (r);
+	}
 	if (codexion(&data))
 		fprintf(stderr, "Error: could not create the threads\n");
 	free(inputs);

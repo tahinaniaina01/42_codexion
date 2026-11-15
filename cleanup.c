@@ -20,7 +20,7 @@ void	destroy_dongles(t_dongle *dongles, int n_dongles)
 	while (i < n_dongles)
 	{
 		pthread_mutex_destroy(&dongles[i].mutex);
-		pthread_cond_destroy(&dongles->cond);
+		pthread_cond_destroy(&dongles[i].cond);
 		i++;
 	}
 	free(dongles);

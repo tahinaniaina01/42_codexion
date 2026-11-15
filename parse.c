@@ -50,8 +50,10 @@ t_input	*parse(int ac, char **av)
 {
 	t_input	*inputs;
 
-	inputs = (t_input *)malloc(sizeof(t_input));
 	if (ac != 9 || !is_valid(ac, av))
+		return (NULL);
+	inputs = (t_input *)malloc(sizeof(t_input));
+	if (!inputs)
 		return (NULL);
 	inputs->n_coders = atoi(av[1]);
 	inputs->time_to_burnout = atoi(av[2]);
