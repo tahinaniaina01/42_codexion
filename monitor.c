@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 17:19:26 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 21:15:28 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 21:25:03 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,14 @@
 static int	has_burned_out(t_coder *coder)
 {
 	long	elapsed;
+	int		done;
 
 	pthread_mutex_lock(&coder->mutex);
+	done = (coder->compile_count >= coder->compiles_required);
 	elapsed = now() - coder->last_compile_start;
 	pthread_mutex_unlock(&coder->mutex);
+	if (done)
+		return (0);
 	return (elapsed > coder->burnout_time);
 }
 
