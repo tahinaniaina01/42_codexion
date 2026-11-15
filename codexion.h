@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:37:03 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 16:25:48 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 16:26:10 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,6 @@ void				clear_heap(t_heap **heap);
 long				now(void);
 void				sleep_ms(t_data *data, long duration);
 int					is_stop(t_data *data);
+int					codexion(t_data *data);
 
 #endif
