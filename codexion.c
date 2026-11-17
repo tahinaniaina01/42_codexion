@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:36:53 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/17 13:41:55 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/17 14:22:22 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ int	start_coders(t_data *data)
 
 int	codexion(t_data *data)
 {
+	if (data->n_coders > 0)
+		if (data->coders[0].compiles_required == 0)
+			return (0);
 	set_start_time(data);
 	if (start_coders(data) != 0)
 		return (2);

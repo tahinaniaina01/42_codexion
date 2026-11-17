@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:37:46 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/17 13:42:07 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/17 14:20:09 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	main(int ac, char **av)
 	int		r;
 
 	inputs = parse(ac, av);
-	printf("cd: %d\n", inputs->dongle_cooldown);
 	if (inputs == NULL)
 	{
 		fprintf(stderr, "Invalid inputs\n");

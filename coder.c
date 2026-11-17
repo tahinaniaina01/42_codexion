@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 16:32:44 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/17 13:46:12 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/17 14:17:40 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static int	take_dongle(t_data *data, t_dongle *dongle, t_coder *coder)
 
 static int	take_two_dongles(t_data *data, t_coder *coder)
 {
+	if ((coder->id - 1) % 2)
+		usleep(100);
 	if (!take_dongle(data, coder->first_dongle, coder))
 		return (0);
 	if (!take_dongle(data, coder->second_dongle, coder))
@@ -52,7 +54,7 @@ static int	take_two_dongles(t_data *data, t_coder *coder)
 	return (1);
 }
 
-static void	compile(t_data *data, t_coder *coder)
+static void	do_task(t_data *data, t_coder *coder)
 {
 	pthread_mutex_lock(&coder->mutex);
 	coder->last_compile_start = now();
@@ -81,7 +83,7 @@ void	*coder_thread(void *arg)
 	{
 		if (!take_two_dongles(data, coder))
 			break ;
-		compile(data, coder);
+		do_task(data, coder);
 		pthread_mutex_lock(&coder->mutex);
 		coder->compile_count++;
 		done = (coder->compile_count >= coder->compiles_required);
