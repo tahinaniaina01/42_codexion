@@ -12,10 +12,10 @@
 
 #include "codexion.h"
 
-static int	has_burned_out(t_coder *coder)
+static int has_burned_out(t_coder *coder)
 {
-	long	elapsed;
-	int		done;
+	long elapsed;
+	int done;
 
 	pthread_mutex_lock(&coder->mutex);
 	done = (coder->compile_count >= coder->compiles_required);
@@ -26,9 +26,9 @@ static int	has_burned_out(t_coder *coder)
 	return (elapsed > coder->burnout_time);
 }
 
-static int	check_burnouts(t_data *data)
+static int check_burnouts(t_data *data)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (i < data->n_coders)
@@ -43,10 +43,10 @@ static int	check_burnouts(t_data *data)
 	return (0);
 }
 
-static int	all_coder_done(t_data *data)
+static int all_coder_done(t_data *data)
 {
-	int	i;
-	int	d;
+	int i;
+	int d;
 
 	i = 0;
 	while (i < data->n_coders)
@@ -61,9 +61,9 @@ static int	all_coder_done(t_data *data)
 	return (1);
 }
 
-void	*monitor_thread(void *arg)
+void *monitor_thread(void *arg)
 {
-	t_data	*data;
+	t_data *data;
 
 	data = (t_data *)arg;
 	while (!is_stopped(data))

@@ -37,7 +37,7 @@ static void	set_start_time(t_data *data)
 	}
 }
 
-static int	start_coders(t_data *data)
+ int	start_coders(t_data *data)
 {
 	int					i;
 	t_data_and_coder	*dc;

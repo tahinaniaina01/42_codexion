@@ -12,14 +12,14 @@
 
 #include "codexion.h"
 
-static void	asigne_dongles(t_data *data, int index)
+static void asigne_dongles(t_data *data, int index)
 {
-	int	left;
-	int	right;
+	int left;
+	int right;
 
 	left = index;
 	right = (index + 1) % data->n_coders;
-	if (left > right)
+	if (index % 2)
 	{
 		data->coders[index].first_dongle = &data->dongles[left];
 		data->coders[index].second_dongle = &data->dongles[right];
@@ -31,9 +31,9 @@ static void	asigne_dongles(t_data *data, int index)
 	}
 }
 
-int	init_coders(t_data *data, t_input *inputs)
+int init_coders(t_data *data, t_input *inputs)
 {
-	int	i;
+	int i;
 
 	data->coders = (t_coder *)malloc(sizeof(t_coder) * inputs->n_coders);
 	if (!data->coders)
@@ -50,6 +50,7 @@ int	init_coders(t_data *data, t_input *inputs)
 		data->coders[i].compile_count = 0;
 		data->coders[i].compiles_required = inputs->number_of_compiles_required;
 		asigne_dongles(data, i);
+		data->coders[i].nb_dongles = 0;
 		if (pthread_mutex_init(&data->coders[i].mutex, NULL) != 0)
 		{
 			return (3);
@@ -59,9 +60,9 @@ int	init_coders(t_data *data, t_input *inputs)
 	return (0);
 }
 
-int	init_dongles(t_data *data, t_input *inputs)
+int init_dongles(t_data *data, t_input *inputs)
 {
-	int	i;
+	int i;
 
 	data->dongles = (t_dongle *)malloc(sizeof(t_dongle) * inputs->n_coders);
 	if (!data->dongles)
@@ -85,9 +86,9 @@ int	init_dongles(t_data *data, t_input *inputs)
 	return (0);
 }
 
-int	init_data(t_data *data, t_input *inputs)
+int init_data(t_data *data, t_input *inputs)
 {
-	int	r;
+	int r;
 
 	data->stop = 0;
 	data->n_coders = inputs->n_coders;

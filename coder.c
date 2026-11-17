@@ -12,9 +12,9 @@
 
 #include "codexion.h"
 
-static long	get_preority(t_coder *coder)
+static long get_preority(t_coder *coder)
 {
-	long	priority;
+	long priority;
 
 	pthread_mutex_lock(&coder->mutex);
 	priority = coder->last_compile_start + coder->burnout_time;
@@ -22,9 +22,9 @@ static long	get_preority(t_coder *coder)
 	return (priority);
 }
 
-static int	take_dongle(t_data *data, t_dongle *dongle, t_coder *coder)
+static int take_dongle(t_data *data, t_dongle *dongle, t_coder *coder)
 {
-	t_request	req;
+	t_request req;
 
 	req.coder_id = coder->id;
 	req.sheduler = data->scheduler;
@@ -38,37 +38,37 @@ static int	take_dongle(t_data *data, t_dongle *dongle, t_coder *coder)
 	}
 	heap_pop(&dongle->heap);
 	dongle->in_use = 1;
-	pthread_mutex_unlock(&dongle->mutex);
 	log_state(data, coder->id, "has taken a dongle");
+	pthread_mutex_unlock(&dongle->mutex);
 	return (1);
 }
 
-static int	take_two_dongles(t_data *data, t_coder *coder)
+static int take_two_dongles(t_data *data, t_coder *coder)
 {
 	if (!take_dongle(data, coder->first_dongle, coder))
-		return (0);
+		return 0;
 	if (!take_dongle(data, coder->second_dongle, coder))
-		return (0);
-	return (1);
+		return 0;
+	return 1;
 }
 
-static void	compile(t_data *data, t_coder *coder)
+static void compile(t_data *data, t_coder *coder)
 {
 	pthread_mutex_lock(&coder->mutex);
 	coder->last_compile_start = now();
 	log_state(data, coder->id, "is compiling");
 	sleep_ms(data, coder->time_to_compile);
 	pthread_mutex_unlock(&coder->mutex);
-	dongle_release(coder->first_dongle);
-	dongle_release(coder->second_dongle);
+	dongle_release(coder->first_dongle, 1);
+	dongle_release(coder->second_dongle, 1);
 }
 
-void	*coder_thread(void *arg)
+void *coder_thread(void *arg)
 {
-	t_data_and_coder	*dc;
-	t_data				*data;
-	t_coder				*coder;
-	int					done;
+	t_data_and_coder *dc;
+	t_data *data;
+	t_coder *coder;
+	int done;
 
 	dc = (t_data_and_coder *)arg;
 	data = dc->data;
@@ -76,7 +76,7 @@ void	*coder_thread(void *arg)
 	while (!is_stopped(data))
 	{
 		if (!take_two_dongles(data, coder))
-			break ;
+			break;
 		compile(data, coder);
 		log_state(data, coder->id, "is debugging");
 		sleep_ms(data, coder->time_to_debug);
@@ -87,7 +87,8 @@ void	*coder_thread(void *arg)
 		done = (coder->compile_count >= coder->compiles_required);
 		pthread_mutex_unlock(&coder->mutex);
 		if (done)
-			break ;
+			break;
 	}
+	free(dc);
 	return (NULL);
 }
