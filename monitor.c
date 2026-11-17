@@ -72,7 +72,7 @@ void *monitor_thread(void *arg)
 			stop_codexion(data);
 		if (check_burnouts(data))
 			return (NULL);
-		usleep(1000);
+		usleep(100);
 	}
 	return (NULL);
 }
