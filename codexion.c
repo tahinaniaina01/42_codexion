@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:36:53 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 18:15:24 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/17 13:41:55 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	set_start_time(t_data *data)
 	}
 }
 
- int	start_coders(t_data *data)
+int	start_coders(t_data *data)
 {
 	int					i;
 	t_data_and_coder	*dc;

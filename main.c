@@ -6,17 +6,18 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 14:37:46 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 21:30:35 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/17 13:42:07 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_input *inputs;
-	t_data data;
-	int r;
+	t_input	*inputs;
+	t_data	data;
+	int		r;
+
 	inputs = parse(ac, av);
 	printf("cd: %d\n", inputs->dongle_cooldown);
 	if (inputs == NULL)

@@ -6,16 +6,16 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 11:59:11 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/15 20:32:05 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/17 13:42:04 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-static void asigne_dongles(t_data *data, int index)
+static void	asigne_dongles(t_data *data, int index)
 {
-	int left;
-	int right;
+	int	left;
+	int	right;
 
 	left = index;
 	right = (index + 1) % data->n_coders;
@@ -31,9 +31,9 @@ static void asigne_dongles(t_data *data, int index)
 	}
 }
 
-int init_coders(t_data *data, t_input *inputs)
+int	init_coders(t_data *data, t_input *inputs)
 {
-	int i;
+	int	i;
 
 	data->coders = (t_coder *)malloc(sizeof(t_coder) * inputs->n_coders);
 	if (!data->coders)
@@ -60,9 +60,9 @@ int init_coders(t_data *data, t_input *inputs)
 	return (0);
 }
 
-int init_dongles(t_data *data, t_input *inputs)
+int	init_dongles(t_data *data, t_input *inputs)
 {
-	int i;
+	int	i;
 
 	data->dongles = (t_dongle *)malloc(sizeof(t_dongle) * inputs->n_coders);
 	if (!data->dongles)
@@ -86,9 +86,9 @@ int init_dongles(t_data *data, t_input *inputs)
 	return (0);
 }
 
-int init_data(t_data *data, t_input *inputs)
+int	init_data(t_data *data, t_input *inputs)
 {
-	int r;
+	int	r;
 
 	data->stop = 0;
 	data->n_coders = inputs->n_coders;
