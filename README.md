@@ -13,7 +13,7 @@ three phases:
 3. refactoring.
 
 The program creates one thread per coder and a monitor thread. Coders request
-their dongles through per-dongle waiting queues. Two scheduling policies are
+their dongles through per-dongle waiting heaps. Two scheduling policies are
 available:
 
 - `fifo`: requests are served in insertion order;
@@ -82,13 +82,13 @@ the waiting operation returns and the thread does not continue compiling.
 
 ### Fairness and starvation prevention
 
-Every dongle owns a protected request queue. Requests are served according to
+Every dongle owns a protected request heap. Requests are served according to
 the selected policy:
 
 - FIFO preserves request insertion order;
 - EDF prioritizes the request with the earliest calculated burnout deadline.
 
-The queue is checked while holding the dongle mutex, so two coders cannot
+The heap is checked while holding the dongle mutex, so two coders cannot
 remove the same request or acquire the same dongle simultaneously.
 
 ### Dongle cooldown
@@ -96,7 +96,7 @@ remove the same request or acquire the same dongle simultaneously.
 When a dongle is released, it is marked unavailable until
 `current_time + dongle_cooldown`. Waiting coders are not allowed to take it
 before this timestamp. A timed condition wait is used when the waiting coder
-is at the head of the queue.
+is at the head of the heap.
 
 ### Precise burnout detection
 
@@ -117,7 +117,7 @@ message is printed consistently.
 
 Mutexes protect shared state:
 
-- each dongle mutex protects `in_use`, `available_at`, and its request queue;
+- each dongle mutex protects `in_use`, `available_at`, and its request heap;
 - each coder mutex protects `last_compile_start` and `compile_count`;
 - the logging mutex protects `stop` and serializes output.
 
@@ -133,7 +133,7 @@ temporarily release the dongle mutex while the thread sleeps and reacquire it
 before returning.
 
 When a dongle is released, `pthread_cond_broadcast` wakes all coders waiting
-for it. They then re-check the queue order, cooldown timestamp, and `in_use`
+for it. They then re-check the heap order, cooldown timestamp, and `in_use`
 flag while holding the mutex. Waking a thread does not grant it the dongle:
 the predicate must still be true.
 

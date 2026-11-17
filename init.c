@@ -76,7 +76,7 @@ int	init_dongles(t_data *data, t_input *inputs)
 			pthread_mutex_destroy(&data->dongles[i].mutex);
 			return (3);
 		}
-		data->dongles[i].queue = NULL;
+		data->dongles[i].heap = NULL;
 		data->dongles[i].in_use = 0;
 		data->dongles[i].available_at = 0;
 		data->dongles[i].cooldown = inputs->dongle_cooldown;

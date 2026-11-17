@@ -21,6 +21,7 @@ void	destroy_dongles(t_dongle *dongles, int n_dongles)
 	{
 		pthread_mutex_destroy(&dongles[i].mutex);
 		pthread_cond_destroy(&dongles[i].cond);
+		clear_heap(&dongles[i].heap);
 		i++;
 	}
 	free(dongles);

@@ -30,13 +30,13 @@ static int	take_dongle(t_data *data, t_dongle *dongle, t_coder *coder)
 	req.sheduler = data->scheduler;
 	req.preority = get_preority(coder);
 	pthread_mutex_lock(&dongle->mutex);
-	heap_push(&dongle->queue, req);
+	heap_push(&dongle->heap, req);
 	if (wait_for_turn(data, dongle, coder->id))
 	{
 		pthread_mutex_unlock(&dongle->mutex);
 		return (0);
 	}
-	heap_pop(&dongle->queue);
+	heap_pop(&dongle->heap);
 	dongle->in_use = 1;
 	pthread_mutex_unlock(&dongle->mutex);
 	log_state(data, coder->id, "has taken a dongle");

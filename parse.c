@@ -35,7 +35,7 @@ static int	is_valid(int ac, char **av)
 	int	i;
 
 	i = 1;
-	while (i < ac - 2)
+	while (i < ac - 1)
 	{
 		if (!is_integer(av[i]))
 			return (0);

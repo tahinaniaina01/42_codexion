@@ -14,9 +14,9 @@
 
 static int	is_myturn(t_dongle *dongle, int coder_id)
 {
-	if (dongle->queue == NULL)
+	if (dongle->heap == NULL)
 		return (0);
-	return (dongle->queue->value.coder_id == coder_id && !dongle->in_use);
+	return (dongle->heap->value.coder_id == coder_id && !dongle->in_use);
 }
 
 static int	can_take(t_dongle *dongle, int coder_id)

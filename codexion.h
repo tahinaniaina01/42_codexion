@@ -58,7 +58,7 @@ typedef struct s_dongle
 	pthread_cond_t	cond;
 	int				in_use;
 	int				available_at;
-	t_heap			*queue;
+	t_heap			*heap;
 	int				cooldown;
 }					t_dongle;
 
