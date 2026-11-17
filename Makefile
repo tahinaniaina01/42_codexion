@@ -6,7 +6,7 @@
 #    By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/26 16:35:28 by trakotos          #+#    #+#              #
-#    Updated: 2026/09/26 16:49:09 by trakotos         ###   ########.fr        #
+#    Updated: 2026/11/15 19:49:05 by trakotos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,17 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -pthread
 RM = rm -rf
 SRCS = \
+	cleanup.c \
+	coder.c \
+	codexion.c \
+	dongle.c \
+	heap_ops.c \
+	init.c \
+	log.c \
 	main.c \
-	src/parse.c
+	monitor.c \
+	parse.c \
+	time_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -34,4 +43,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-	

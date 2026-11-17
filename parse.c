@@ -6,11 +6,11 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 15:44:03 by trakotos          #+#    #+#             */
-/*   Updated: 2026/09/26 17:04:40 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/15 11:58:04 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/parser.h"
+#include "codexion.h"
 
 static int	is_integer(char *str)
 {
@@ -50,8 +50,10 @@ t_input	*parse(int ac, char **av)
 {
 	t_input	*inputs;
 
-	inputs = (t_input *)malloc(sizeof(t_input));
 	if (ac != 9 || !is_valid(ac, av))
+		return (NULL);
+	inputs = (t_input *)malloc(sizeof(t_input));
+	if (!inputs)
 		return (NULL);
 	inputs->n_coders = atoi(av[1]);
 	inputs->time_to_burnout = atoi(av[2]);
