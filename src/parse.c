@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 15:44:03 by trakotos          #+#    #+#             */
-/*   Updated: 2026/09/26 16:45:43 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/09/26 17:04:40 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	is_valid(int ac, char **av)
 	int	i;
 
 	i = 1;
-	while (i < ac - 1)
+	while (i < ac - 2)
 	{
 		if (!is_integer(av[i]))
 			return (0);
