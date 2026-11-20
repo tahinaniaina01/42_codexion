@@ -42,8 +42,6 @@ typedef struct s_input
 typedef struct s_request
 {
 	int				coder_id;
-	long			preority;
-	t_scheduler		sheduler;
 }					t_request;
 
 typedef struct s_heap
@@ -74,9 +72,9 @@ typedef struct s_coder
 	long			time_to_debug;
 	long			time_to_refactor;
 	long			last_compile_start;
+	long			wait_since;
 	int				compile_count;
 	int				compiles_required;
-	int				nb_dongles;
 }					t_coder;
 
 typedef struct s_data
@@ -85,11 +83,21 @@ typedef struct s_data
 	t_coder			*coders;
 	t_dongle		*dongles;
 	pthread_mutex_t	log_mutex;
+	pthread_mutex_t	scheduling_mutex;
+	pthread_cond_t	scheduling_cond;
 	pthread_t		monitor;
 	int				stop;
 	long			start_time;
 	t_scheduler		scheduler;
 }					t_data;
+
+typedef struct s_priority
+{
+	long			deadline;
+	long			wait_since;
+	int				count;
+	int				id;
+}					t_priority;
 
 typedef struct s_data_and_coder
 {
@@ -99,6 +107,9 @@ typedef struct s_data_and_coder
 
 t_input				*parse(int ac, char **av);
 int					init_data(t_data *data, t_input *inputs);
+int					init_scheduling(t_data *data);
+int					init_dongles(t_data *data, t_input *inputs);
+int					init_coders(t_data *data, t_input *inputs);
 void				destroy_dongles(t_dongle *dongles, int n_dongles);
 void				destroy_coders(t_coder *coders, int n_coders);
 void				cleanup_data(t_data *data);
@@ -117,5 +128,6 @@ void				*monitor_thread(void *arg);
 int					wait_for_turn(t_data *data, t_dongle *dongle, int coder_id);
 void				dongle_release(t_dongle *dongle, int with_cooldon);
 void				declare_burnout(t_data *data, int id);
+int					take_edf_pair(t_data *data, t_coder *coder);
 
 #endif

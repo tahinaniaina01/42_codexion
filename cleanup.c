@@ -44,5 +44,7 @@ void	cleanup_data(t_data *data)
 {
 	destroy_dongles(data->dongles, data->n_coders);
 	destroy_coders(data->coders, data->n_coders);
+	pthread_cond_destroy(&data->scheduling_cond);
+	pthread_mutex_destroy(&data->scheduling_mutex);
 	pthread_mutex_destroy(&data->log_mutex);
 }

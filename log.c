@@ -49,6 +49,9 @@ static void	wake_all_dongles(t_data *data)
 		pthread_mutex_unlock(&data->dongles[i].mutex);
 		i++;
 	}
+	pthread_mutex_lock(&data->scheduling_mutex);
+	pthread_cond_broadcast(&data->scheduling_cond);
+	pthread_mutex_unlock(&data->scheduling_mutex);
 }
 
 void	declare_burnout(t_data *data, int id)

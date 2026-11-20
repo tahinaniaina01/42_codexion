@@ -33,14 +33,21 @@ static int	is_integer(char *str)
 static int	is_valid(int ac, char **av)
 {
 	int	i;
+	int	value;
 
 	i = 1;
 	while (i < ac - 1)
 	{
 		if (!is_integer(av[i]))
 			return (0);
+		value = atoi(av[i]);
+		if (value < 0)
+			return (0);
 		i++;
 	}
+	if (atoi(av[1]) < 1 || atoi(av[2]) < 1
+		|| atoi(av[6]) < 1)
+		return (0);
 	if (strcmp(av[i], "fifo") && strcmp(av[i], "edf"))
 		return (0);
 	return (1);

@@ -21,10 +21,14 @@ SRCS = \
 	dongle.c \
 	heap_ops.c \
 	init.c \
+	init_coders.c \
+	init_dongles.c \
+	init_scheduling.c \
 	log.c \
 	main.c \
 	monitor.c \
 	parse.c \
+	scheduler.c \
 	time_utils.c
 
 OBJS = $(SRCS:.c=.o)

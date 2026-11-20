@@ -23,22 +23,33 @@ static int	has_burned_out(t_coder *coder)
 	pthread_mutex_unlock(&coder->mutex);
 	if (done)
 		return (0);
-	return (elapsed > coder->burnout_time);
+	return (elapsed >= coder->burnout_time);
+}
+
+static int	check_one_burnout(t_data *data, int i)
+{
+	t_coder	*coder;
+
+	coder = &data->coders[i];
+	if (data->scheduler == EDF)
+		return (0);
+	if (has_burned_out(coder))
+	{
+		declare_burnout(data, coder->id);
+		return (1);
+	}
+	return (0);
 }
 
 static int	check_burnouts(t_data *data)
 {
 	int	i;
 
-	i = 0;
-	while (i < data->n_coders)
+	i = -1;
+	while (++i < data->n_coders)
 	{
-		if (has_burned_out(&data->coders[i]))
-		{
-			declare_burnout(data, data->coders[i].id);
+		if (check_one_burnout(data, i))
 			return (1);
-		}
-		i++;
 	}
 	return (0);
 }
