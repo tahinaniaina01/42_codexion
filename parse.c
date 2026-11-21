@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/26 15:44:03 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/17 13:42:12 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/21 18:24:10 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,6 @@ static int	is_valid(int ac, char **av)
 			return (0);
 		i++;
 	}
-	if (atoi(av[1]) < 1 || atoi(av[2]) < 1
-		|| atoi(av[6]) < 1)
-		return (0);
 	if (strcmp(av[i], "fifo") && strcmp(av[i], "edf"))
 		return (0);
 	return (1);

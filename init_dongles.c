@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 23:59:00 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/20 23:59:00 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/21 17:02:02 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	init_one_dongle(t_dongle *dongle, t_input *inputs)
 {
 	dongle->heap = NULL;
 	dongle->in_use = 0;
-	dongle->available_at = 0;
+	dongle->available_at = now();
 	dongle->cooldown = inputs->dongle_cooldown;
 	if (pthread_mutex_init(&dongle->mutex, NULL) != 0)
 		return (3);

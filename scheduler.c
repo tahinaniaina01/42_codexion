@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 23:55:00 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/20 23:55:00 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/21 16:58:32 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,21 +66,17 @@ static int	pair_available(t_coder *coder)
 	second = coder->second_dongle;
 	now_ms = now();
 	pthread_mutex_lock(&first->mutex);
-	if (second != first)
-		pthread_mutex_lock(&second->mutex);
-	if (first->in_use || second->in_use
-		|| now_ms < first->available_at
+	pthread_mutex_lock(&second->mutex);
+	if (first->in_use || second->in_use || now_ms < first->available_at
 		|| now_ms < second->available_at)
 	{
-		if (second != first)
-			pthread_mutex_unlock(&second->mutex);
+		pthread_mutex_unlock(&second->mutex);
 		pthread_mutex_unlock(&first->mutex);
 		return (0);
 	}
 	first->in_use = 1;
 	second->in_use = 1;
-	if (second != first)
-		pthread_mutex_unlock(&second->mutex);
+	pthread_mutex_unlock(&second->mutex);
 	pthread_mutex_unlock(&first->mutex);
 	return (1);
 }
@@ -105,8 +101,8 @@ int	take_edf_pair(t_data *data, t_coder *coder)
 			return (1);
 		}
 		ms_to_timespec(now() + 1, &limit);
-		pthread_cond_timedwait(&data->scheduling_cond,
-			&data->scheduling_mutex, &limit);
+		pthread_cond_timedwait(&data->scheduling_cond, &data->scheduling_mutex,
+			&limit);
 	}
 	pthread_mutex_unlock(&data->scheduling_mutex);
 	return (0);

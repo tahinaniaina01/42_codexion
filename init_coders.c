@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 23:59:00 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/21 00:55:09 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/21 17:32:40 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	assign_dongles(t_data *data, int index)
 
 	left = index;
 	right = (index + 1) % data->n_coders;
-	if (index % 2)
+	if (!(index % 2))
 	{
 		data->coders[index].first_dongle = &data->dongles[left];
 		data->coders[index].second_dongle = &data->dongles[right];
