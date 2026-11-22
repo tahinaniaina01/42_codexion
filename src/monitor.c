@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 17:19:26 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/22 14:31:49 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/22 15:24:33 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ static int	check_one_burnout(t_data *data, int i)
 	t_coder	*coder;
 
 	coder = &data->coders[i];
-	if (data->scheduler == EDF)
-		return (0);
 	if (has_burned_out(coder))
 	{
 		declare_burnout(data, coder->id);

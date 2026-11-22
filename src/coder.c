@@ -6,7 +6,7 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 16:32:44 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/22 14:59:28 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/22 15:48:49 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static void	do_task(t_data *data, t_coder *coder)
 	coder->last_compile_start = now();
 	log_state(data, coder->id, "is compiling");
 	coder->compile_count++;
-	sleep_ms(data, coder->time_to_compile);
 	pthread_mutex_unlock(&coder->mutex);
+	sleep_ms(data, coder->time_to_compile);
 	dongle_release(coder->first_dongle, 1);
 	dongle_release(coder->second_dongle, 1);
 	pthread_mutex_lock(&data->scheduling_mutex);
@@ -82,7 +82,6 @@ void	*coder_thread(void *arg)
 	t_data				*data;
 	t_coder				*coder;
 
-	// int					done;
 	dc = (t_data_and_coder *)arg;
 	data = dc->data;
 	coder = dc->coder;
@@ -93,9 +92,6 @@ void	*coder_thread(void *arg)
 		if (!take_two_dongles(data, coder))
 			break ;
 		do_task(data, coder);
-		// done = (coder->compile_count >= coder->compiles_required);
-		// if (done)
-		// 	break ;
 	}
 	free(dc);
 	return (NULL);
