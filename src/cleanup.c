@@ -6,11 +6,11 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 13:04:58 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/17 13:41:48 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/22 14:31:49 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "codexion.h"
+#include "../headers/codexion.h"
 
 void	destroy_dongles(t_dongle *dongles, int n_dongles)
 {

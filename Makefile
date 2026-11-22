@@ -6,7 +6,7 @@
 #    By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/26 16:35:28 by trakotos          #+#    #+#              #
-#    Updated: 2026/11/17 14:30:30 by trakotos         ###   ########.fr        #
+#    Updated: 2026/11/22 14:32:12 by trakotos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,21 +15,21 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -pthread
 RM = rm -rf
 SRCS = \
-	cleanup.c \
-	coder.c \
-	codexion.c \
-	dongle.c \
-	heap_ops.c \
-	init.c \
-	init_coders.c \
-	init_dongles.c \
-	init_scheduling.c \
-	log.c \
-	main.c \
-	monitor.c \
-	parse.c \
-	scheduler.c \
-	time_utils.c
+	src/cleanup.c \
+	src/coder.c \
+	src/codexion.c \
+	src/dongle.c \
+	src/heap_ops.c \
+	src/init.c \
+	src/init_coders.c \
+	src/init_dongles.c \
+	src/init_scheduling.c \
+	src/log.c \
+	src/main.c \
+	src/monitor.c \
+	src/parse.c \
+	src/scheduler.c \
+	src/time_utils.c
 
 OBJS = $(SRCS:.c=.o)
 

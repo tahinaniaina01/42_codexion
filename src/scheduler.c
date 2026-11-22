@@ -6,11 +6,11 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/20 23:55:00 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/21 16:58:32 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/22 14:31:49 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "codexion.h"
+#include "../headers/codexion.h"
 
 static t_priority	get_priority(t_coder *coder)
 {

@@ -6,11 +6,11 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 13:18:03 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/21 00:47:52 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/22 14:31:49 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "codexion.h"
+#include "../headers/codexion.h"
 
 void	heap_push(t_heap **heap, t_request val)
 {

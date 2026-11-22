@@ -6,11 +6,11 @@
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/15 16:18:56 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/17 13:42:05 by trakotos         ###   ########.fr       */
+/*   Updated: 2026/11/22 14:31:49 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "codexion.h"
+#include "../headers/codexion.h"
 
 int	is_stopped(t_data *data)
 {

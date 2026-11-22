@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_scheduling.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: trakotos <trakotos@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/26 14:37:46 by trakotos          #+#    #+#             */
-/*   Updated: 2026/11/17 14:20:09 by trakotos         ###   ########.fr       */
+/*   Created: 2026/11/20 23:59:00 by trakotos          #+#    #+#             */
+/*   Updated: 2026/11/22 14:31:49 by trakotos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "codexion.h"
+#include "../headers/codexion.h"
 
-int	main(int ac, char **av)
+int	init_scheduling(t_data *data)
 {
-	t_input	*inputs;
-	t_data	data;
-	int		r;
-
-	inputs = parse(ac, av);
-	if (inputs == NULL)
+	if (pthread_mutex_init(&data->scheduling_mutex, NULL) != 0)
+		return (3);
+	if (pthread_cond_init(&data->scheduling_cond, NULL) != 0)
 	{
-		fprintf(stderr, "Invalid inputs\n");
-		return (1);
+		pthread_mutex_destroy(&data->scheduling_mutex);
+		return (3);
 	}
-	r = init_data(&data, inputs);
-	if (r)
-	{
-		free(inputs);
-		return (r);
-	}
-	if (codexion(&data))
-		fprintf(stderr, "Error: could not create the threads\n");
-	free(inputs);
-	cleanup_data(&data);
 	return (0);
 }
